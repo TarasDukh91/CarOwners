@@ -1,0 +1,36 @@
+<button type="button" class="btn btn-primary" routerLink="/create" >Add Owner</button>
+<button
+  type="button"
+  class="btn btn-success"
+  (click)="onViewOwnerButtonClick()"
+  [ngClass]="{'disabled': !selectedOwner.id}">View Owner</button>
+<button
+  type="button"
+  class="btn btn-warning"
+  [ngClass]="{'disabled': !selectedOwner.id}"
+  (click)="onEditButtonClick()">Edit Owner</button>
+<button
+  type="button"
+  class="btn btn-danger"
+  [ngClass]="{'disabled': !selectedOwner.id}"
+  (click)="onDeleteOwnerClick()">Delete Owner</button>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th *ngFor="let header of tableHeaders" scope="col">{{ header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr #ownersRow
+        [ngClass]="{'table-active': owner.id === selectedOwner.id}"
+        (click)="onOwnersRowClick($event, owner)"
+        *ngFor="let owner of owners; index as i"
+        [id]="i + 1">
+      <td>{{ owner.aLastName }}</td>
+      <td>{{ owner.aFirstName }}</td>
+      <td>{{ owner.aMiddleName }}</td>
+      <td>{{ owner.aCars.length }}</td>
+    </tr>
+  </tbody>
+</table>

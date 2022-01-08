@@ -1,0 +1,39 @@
+<h1>Create Owner</h1>
+<form class="create-owner-form" [formGroup]="createOwnerForm" (ngSubmit)="onOwnerSubmit()">
+  <div class="mb-3">
+    <label for="first-name" class="form-label">Name</label>
+    <input class="form-control" id="first-name" formControlName="name">
+  </div>
+  <div class="mb-3">
+    <label for="second-name" class="form-label">Surname</label>
+    <input class="form-control" id="second-name" formControlName="secondName">
+  </div>
+  <div class="mb-3">
+    <label for="parent-name" class="form-check-label">Parent name</label>
+    <input class="form-control" id="parent-name" formControlName="parentName">
+  </div>
+  <h2>Cars</h2>
+  <div class="cars-form">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th *ngFor="let header of carsTableHeaders" scope="col">{{ header }}</th>
+      </tr>
+      </thead>
+      <tbody formArrayName="cars" *ngFor="let carGroup of getCarForm(); let i = index">
+        <tr [formGroupName]="i" class="cars-row">
+          <td><input class="form-control" formControlName="number"></td>
+          <td><input class="form-control" formControlName="production"></td>
+          <td><input class="form-control" formControlName="model"></td>
+          <td><input class="form-control" formControlName="year"></td>
+          <td><button type="button" class="btn btn-danger" (click)="onDeleteCarRow(i)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-secondary" (click)="onAddCar()">Add car</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [ngClass]="{'disabled': createOwnerForm.status === 'INVALID'}">Submit</button>
+</form>

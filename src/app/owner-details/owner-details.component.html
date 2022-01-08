@@ -1,0 +1,21 @@
+<div class="onwer-details">
+  <h3>Name: {{owner.aFirstName}}</h3> <h3>Surname: {{owner.aLastName}}</h3> <h3>Parent name: {{owner.aMiddleName}}</h3>
+</div>
+
+<table class="table table-bordered">
+  <caption class="caption-top">Cars</caption>
+  <thead>
+    <tr>
+      <th *ngFor="let header of carTableHeaders" scope="col">{{header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let details of owner.aCars">
+      <td>{{details.number}}</td>
+      <td>{{details.production}}</td>
+      <td>{{details.model}}</td>
+      <td>{{details.year}}</td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" routerLink="">Return</button>
